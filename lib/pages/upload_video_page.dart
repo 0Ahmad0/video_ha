@@ -19,27 +19,27 @@ class UploadVideoPage extends StatefulWidget {
   @override
   State<UploadVideoPage> createState() => _UploadVideoPageState();
 }
+List<Map<String, dynamic>> tabs = [
+{
+//records
+"path": "Saved_clips_RPI/home/pi/camera",
+"text": "Records", // change directory from firebase here >> only add the
+"icon": Icons.video_camera_back_outlined
+},
+{
+//important
+"path": "reported_clips_RPI/home/pi/camera",
+"text": "Important",
+"icon": Icons.label_important
+},
+  // {"text": "Games", "icon": Icons.sports_esports_rounded},
+  // {"text": "Food", "icon": Icons.fastfood},
+  // {"text": "Sport", "icon": Icons.sports_handball},
+  // {"text": "Learning", "icon": Icons.school},
+];
 
 class _UploadVideoPageState extends State<UploadVideoPage> {
   // late  VideoPlayerController _videoPlayerController;
-  List<Map<String, dynamic>> _tabs = [
-    {
-      //records
-      "path": "Saved_clips_RPI/home/pi/camera",
-      "text": "Records", // change directory from firebase here >> only add the
-      "icon": Icons.video_camera_back_outlined
-    },
-    {
-      //important
-      "path": "reported_clips_RPI/home/pi/camera",
-      "text": "Important",
-      "icon": Icons.label_important
-    },
-    // {"text": "Games", "icon": Icons.sports_esports_rounded},
-    // {"text": "Food", "icon": Icons.fastfood},
-    // {"text": "Sport", "icon": Icons.sports_handball},
-    // {"text": "Learning", "icon": Icons.school},
-  ];
 
   // loadVideoPlayer(String path) async {
   //   _videoPlayerController = VideoPlayerController.asset(path);
@@ -148,13 +148,13 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
               ),
               DropdownButtonFormField(
                   items: [
-                    for (int i = 0; i < _tabs.length; i++)
+                    for (int i = 0; i < tabs.length; i++)
                       DropdownMenuItem(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('${_tabs[i]['text']}'),
-                            Icon(_tabs[i]['icon'])
+                            Text('${tabs[i]['text']}'),
+                            Icon(tabs[i]['icon'])
                           ],
                         ),
                         value: i,
@@ -169,8 +169,8 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
                     }
                   },
                   onChanged: (val) {
-                    category = _tabs[val!]['text'];
-                    pathStorage = _tabs[val]['path'];
+                    category = tabs[val!]['text'];
+                    pathStorage = tabs[val]['path'];
                     //print('${category}');
                   }),
               const SizedBox(

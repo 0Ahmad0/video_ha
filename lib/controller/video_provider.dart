@@ -51,10 +51,24 @@ class VideoProvider with ChangeNotifier {
     return result;
   }
 
+  copyVideo(BuildContext context,
+      {required Video video,required String category}) async {
+    var result;
+    video.sendingTime = DateTime.now();
+    video.category=category;
+
+
+      result = await FirebaseFun.addVideo(video: video);
+      //Const.TOAST(context,textToast: FirebaseFun.findTextToast(result['message'].toString()));
+    Get.snackbar(
+        "result", "${FirebaseFun.findTextToast(result['message'].toString())}");
+
+    return result;
+  }
   addVideo(BuildContext context,
       {required File file,
-      required String category,
-      required String pathStorage}) async {
+        required String category,
+        required String pathStorage}) async {
     var result;
     video = Video(
         name: basename(file.path),

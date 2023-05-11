@@ -217,7 +217,7 @@ class FirebaseFun{
     try {
       String path = basename(file.path);
 
-//FirebaseStorage storage = FirebaseStorage.instance.ref().child(path);
+
       Reference storage = FirebaseStorage.instance.ref().child("${folder}/${path}");
       UploadTask storageUploadTask = storage.putData(data);
       TaskSnapshot taskSnapshot = await storageUploadTask;

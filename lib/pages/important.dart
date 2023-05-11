@@ -355,7 +355,14 @@ class _ImportantPageState extends State<ImportantPage>
             top: 20,
             left: 20,
             child: CircleAvatar(
-                child: IconButton(onPressed: () {}, icon: Icon(Icons.copy))),
+                child: IconButton(onPressed: () async {
+
+
+                  //TODO hariri add loading
+                  await videoProvider.copyVideo(context,
+                    video:videoProvider.listVideo[index],
+                    category: tabs[0]['text']!,);
+                }, icon: Icon(Icons.copy))),
           ),
         ],
       ),

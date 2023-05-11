@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cam/pages/upload_video_page.dart';
 import 'package:flutter_cam/pages/video_player_page.dart';
+import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
@@ -400,7 +401,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             top: 20,
             left: 20,
             child: CircleAvatar(
-                child: IconButton(onPressed: () {}, icon: Icon(Icons.copy))),
+                child: IconButton(onPressed: () async {
+
+                  //TODO hariri add loading
+                  await videoProvider.copyVideo(context,
+                      video:videoProvider.listVideo[index],
+                      category: tabs[1]['text']!,);
+                  //Get.back();
+                }, icon: Icon(Icons.copy))),
           ),
         ],
       ),
